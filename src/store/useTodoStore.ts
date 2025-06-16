@@ -84,6 +84,10 @@ export const useTodoStore = create<UseTodoProps>()(
                 set((state) => ({
                     todos: state.todos.filter(todo => (
                         todo.id !== id
+                    )),
+
+                    completedTodos: state.completedTodos.filter(todo => (
+                        todo.id !== id
                     ))
                 }))
         }),
