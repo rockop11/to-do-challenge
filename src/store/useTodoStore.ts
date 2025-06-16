@@ -6,6 +6,7 @@ interface UseTodoProps {
     todos: ToDoProps[];
     addTodo: (title: string, description: string) => void;
     toggleCompleteTodo: (id: number) => void;
+    deleteTodo: (id:  number) => void;
 }
 
 export const useTodoStore = create<UseTodoProps>()(
@@ -42,6 +43,13 @@ export const useTodoStore = create<UseTodoProps>()(
                     )
                 }
                 )),
+
+            deleteTodo: (id) => 
+                set((state) => ({
+                    todos: state.todos.filter(todo => (
+                        todo.id !== id
+                    ))
+                }))
         }),
         { name: 'todo-storage' }
     )

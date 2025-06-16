@@ -13,7 +13,7 @@ import { BadgeCheckIcon } from "lucide-react"
 
 export const ToDoCard = ({ id, title, description, isComplete }: ToDoProps) => {
 
-    const { toggleCompleteTodo } = useTodoStore()
+    const { toggleCompleteTodo, deleteTodo } = useTodoStore()
 
     return (
         <Card className="
@@ -57,7 +57,7 @@ export const ToDoCard = ({ id, title, description, isComplete }: ToDoProps) => {
                     <Button
                         size='sm'
                         variant='destructive'
-                        onClick={() => console.log(`eliminar ${id}`)}
+                        onClick={() => deleteTodo(id)}
                     >
                         Borrar
                     </Button>
