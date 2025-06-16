@@ -1,6 +1,7 @@
 'use client'
 import { todos } from "@/data/mockTodo"
 import { ToDoCard } from "../todos/TodoCard"
+import { AddTodoDialog } from "../todos/AddTodoDialog"
 
 export const PageContainer = () => {
 
@@ -12,6 +13,7 @@ export const PageContainer = () => {
         ">
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl sm:text-4xl">To Do Challenge</h1>
+                <AddTodoDialog />
             </div>
 
 
