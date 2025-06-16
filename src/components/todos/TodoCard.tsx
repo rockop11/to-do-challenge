@@ -1,4 +1,5 @@
 import type { ToDoProps } from '@/interface/todo';
+import { useTodoStore } from '@/store/useTodoStore';
 import {
     Card,
     CardTitle,
@@ -11,6 +12,8 @@ import { Button } from "@/components/ui/button";
 import { BadgeCheckIcon } from "lucide-react"
 
 export const ToDoCard = ({ id, title, description, isComplete }: ToDoProps) => {
+
+    const { toggleCompleteTodo } = useTodoStore()
 
     return (
         <Card className="
@@ -63,7 +66,7 @@ export const ToDoCard = ({ id, title, description, isComplete }: ToDoProps) => {
                 <Button
                     size="sm"
                     variant={isComplete ? 'outline' : 'default'}
-                    onClick={() => console.log(`toggle complete ${id}`)}
+                    onClick={() => toggleCompleteTodo(id)}
                 >
                     {isComplete ? "En curso" : "Completar"}
                 </Button>

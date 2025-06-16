@@ -5,6 +5,7 @@ import { persist } from "zustand/middleware";
 interface UseTodoProps {
     todos: ToDoProps[];
     addTodo: (title: string, description: string) => void;
+    toggleCompleteTodo: (id: number) => void;
 }
 
 export const useTodoStore = create<UseTodoProps>()(
@@ -30,7 +31,17 @@ export const useTodoStore = create<UseTodoProps>()(
                             }
                         ]
                     }
-                })
+                }),
+
+            toggleCompleteTodo: (id) =>
+                set((state) => ({
+                    todos: state.todos.map((todo) =>
+                        todo.id === id
+                            ? { ...todo, isComplete: !todo.isComplete }
+                            : todo
+                    )
+                }
+                )),
         }),
         { name: 'todo-storage' }
     )
