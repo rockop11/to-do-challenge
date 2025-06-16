@@ -3,10 +3,19 @@
 import { useTodoStore } from "@/store/useTodoStore"
 import { ToDoCard } from "../todos/TodoCard"
 import { AddTodoDialog } from "../todos/AddTodoDialog"
+import { Button } from "../ui/button"
 
 export const PageContainer = () => {
 
-    const { todos } = useTodoStore()
+    const { todos, inProgressTodos, completedTodos, filter, setFilter } = useTodoStore()
+
+    const filteredTodos =
+        filter === 'inProgress'
+            ? inProgressTodos
+            : filter === 'completed'
+                ? completedTodos
+                : todos;
+
 
     return (
         <div className="
@@ -19,6 +28,26 @@ export const PageContainer = () => {
                 <AddTodoDialog />
             </div>
 
+            <div className="flex gap-4 my-4">
+                <Button
+                    variant={filter === 'all' ? 'default' : 'secondary'}
+                    onClick={() => setFilter('all')}
+                >
+                    Todas
+                </Button>
+                <Button
+                    variant={filter === 'inProgress' ? 'default' : 'secondary'}
+                    onClick={() => setFilter('inProgress')}
+                >
+                    En curso
+                </Button>
+                <Button
+                    variant={filter === 'completed' ? 'default' : 'secondary'}
+                    onClick={() => setFilter('completed')}
+                >
+                    Completadas
+                </Button>
+            </div>
 
             <div className="
                 grid gap-4 mt-8
@@ -27,14 +56,15 @@ export const PageContainer = () => {
                 md:grid-cols-3 
                 lg:grid-cols-4
             ">
-                {!todos.length
+                {!filteredTodos.length
                     ? (<p className="text-gray-500 text-lg italic">
-                        Aún no hay notas.
+                        No hay tareas en esta sección.
                     </p>)
-                    : (todos.map((todo, i) => (
+                    : (filteredTodos.map((todo, i) => (
                         <ToDoCard key={i} {...todo} />
                     )))
                 }
+
             </div>
         </div>
 
