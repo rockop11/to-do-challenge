@@ -1,5 +1,6 @@
 'use client'
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useTodoStore } from "@/store/useTodoStore";
 import {
     Dialog,
     DialogTrigger,
@@ -19,6 +20,8 @@ interface AddDialogProps {
 }
 
 export const AddTodoDialog = () => {
+
+    const { addTodo } = useTodoStore()
 
     const [toggleDialog, setToggleDialog] = useState<boolean>(false)
     const [errors, setErrors] = useState<boolean>(false)
@@ -52,9 +55,15 @@ export const AddTodoDialog = () => {
 
         if (!title || !description) {
             setErrors(true)
-            console.log('completar titulo y descripcion')
             return
         }
+
+        addTodo(title, description)
+
+        setInputValues({
+            title: '',
+            description: ''
+        })
 
         setToggleDialog(false)
     }

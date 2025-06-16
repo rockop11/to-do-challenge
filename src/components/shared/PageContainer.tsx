@@ -1,9 +1,12 @@
 'use client'
-import { todos } from "@/data/mockTodo"
+
+import { useTodoStore } from "@/store/useTodoStore"
 import { ToDoCard } from "../todos/TodoCard"
 import { AddTodoDialog } from "../todos/AddTodoDialog"
 
 export const PageContainer = () => {
+
+    const { todos } = useTodoStore()
 
     return (
         <div className="
