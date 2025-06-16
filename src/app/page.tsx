@@ -1,5 +1,7 @@
+import { PageContainer } from "@/components/shared/PageContainer";
+
 export default function Home() {
   return (
-    <h1>to do challenge</h1>
+    <PageContainer />
   );
 }
