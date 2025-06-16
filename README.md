@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# To Do Challenge
 
-## Getting Started
-
-First, run the development server:
-
+## 1) Clonar repositorio
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+    git clone https://github.com/rockop11/to-do-challenge.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 2) Instalar las dependencias
+```bash
+    npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 3) Ejcutar la Aplicación
+```bash
+    npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Dependencias utilizadas:
+- Zustand (Estados globales)
+- Shadcdn & Tailwind (Componentes / Estilos)
+- Next.js (Framework)
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### Funcionalidad del Proyecto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1) una vez que se ejecuta el `npm run dev` en el `localhost:3000` se vera la patanlla de inicio del proyecto.  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2) la primera vez que se ejecute el `npm run dev` no se veran notas, debido a que el store de *Zustand* esta vacìo. Debe agregar una nota.
 
-## Deploy on Vercel
+3) se podrá observar un boton con un simbolo `+` el cual al hacer click abrira un modal para poder crear una nueva nota.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4) Se deberá agregar un tìtulo y una descripciòn a la nota. De lo contrario, apareceran las validaciones pertinentes del formulario. Una vez agregado el título y la descripción, al hacer click en `Crear`, crearà la nueva nota y cerrará el modal, limpiando los inputs, y mostrando la nota en el inicio.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5) Una vez en el inicio, veremos el array de notas con el filtro `all`. mostrando asì todas las notas que se hayan creado (que el estado por defecto de creación es *En Curso*). Y al momento de hacer click en el boton de `Completar`, La nota seleccionada, cambiará su estado a `Completada` (mostrando un *Badge* con el estado `Completada`).
+
+6) Debajo del titulo, se podra observar los 3 distintos botones para poder filtrar la lista de notas, según su estado. 
+    - Todas: muestra todas las notas almacenadas en el estado global de Zustand.
+    - En Curso: muestra las notas que fueron creadas pero no completadas
+    - Completadas: muestra las notas que cambiaron su estado a completadas.
+
+7) Por último, al momento de completar una tarea, se podrá visualizar, a traves de `conditional rendering`, el boton para eliminar la nota. Esto la quita del estado global de todos y actualiza la lista de todos, sin la todo eliminada.
+
